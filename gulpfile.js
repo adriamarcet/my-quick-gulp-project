@@ -24,7 +24,10 @@ const runSequence 	= require('run-sequence');
 gulp.task('sass', function () {
 	return gulp.src('app/scss/**/*.scss') // Gets all files sass files in app/scss and children dirs
 		.pipe( sourcemaps.init() ) // initialize sourcemap plugin
-		.pipe( sass()) // send it to gulp plugin
+		.pipe( sass({
+			// output style: nested, expanded, compact, compressed
+			outputStyle: 'compact'
+		})) // send it to gulp plugin
 		.pipe( sourcemaps.write() )
 		.pipe( gulp.dest('app/css') ) // output folder
 		.pipe( browserSync.reload({ // inject changes with browserSyncs when sass is ran
