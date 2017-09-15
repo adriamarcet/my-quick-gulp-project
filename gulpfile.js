@@ -13,6 +13,7 @@ const imagemin 		= require('gulp-imagemin');
 const cache 		= require('gulp-cache');
 const del 			= require('del');
 const runSequence 	= require('run-sequence');
+const autoprefixer 	= require('gulp-autoprefixer');
 
 
 
@@ -29,6 +30,10 @@ gulp.task('sass', function () {
 			outputStyle: 'compact',
 			precision: 15
 		})) // send it to gulp plugin
+		.pipe(autoprefixer({
+			browsers: ['last 2 versions'],
+			cascade: false
+		}))
 		.pipe( sourcemaps.write() )
 		.pipe( gulp.dest('app/css') ) // output folder
 		.pipe( browserSync.reload({ // inject changes with browserSyncs when sass is ran
