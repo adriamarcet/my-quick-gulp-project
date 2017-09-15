@@ -22,6 +22,7 @@
   "homepage": "https://github.com/adriamarcet/my-quick-gulp-project#readme",
   "devDependencies": {
     "browser-sync": "^2.18.13",
+    "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-cache": "^0.4.6",
     "gulp-if": "^2.0.2",

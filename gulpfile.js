@@ -10,6 +10,7 @@ const gulpIf 		= require('gulp-if');
 const cssnano 		= require('gulp-cssnano');
 const imagemin 		= require('gulp-imagemin');
 const cache 		= require('gulp-cache');
+const del 			= require('del');
 
 
 
@@ -66,7 +67,7 @@ gulp.task('useref', function () {
 
 // Images
 gulp.task('images', function () {
-	return gulp.src('app/images/**/*.+(jpg|png|svg|gif)') // get source files
+	return gulp.src('app/images/**/*.+(jpg|jpeg|png|svg|gif)') // get source files
 		.pipe(
 
 			cache( 
@@ -80,4 +81,22 @@ gulp.task('images', function () {
 			) // cache the task
 		) // send it to gulp plugin
 		.pipe(gulp.dest('dist/images')) // output folder
+});
+
+
+// Fonts: copy fonts from dev to dist
+gulp.task('fonts', function () {
+	return gulp.src('app/fonts/**/*') // get source files
+		.pipe(gulp.dest('dist/fonts')) // output folder
+});
+
+// Del: Cleaning up generated files automatically
+// The del function takes in an array of node globs which tells it what folders to delete.
+gulp.task('clean:dist', function () {
+	return del.sync('dist');
+});
+
+// Clear Cache: for the project
+gulp.task('cache:clear', function (callback) {
+	return cache.clearAll(callback)
 });
