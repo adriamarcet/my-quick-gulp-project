@@ -32,7 +32,8 @@ gulp.task('sass', function () {
 			precision: 15
 		})) // send it to gulp plugin
 		.pipe(uncss({
-			html: ['index.html', 'dist/**/*.html', 'http://example.com']
+			// html: ['index.html', 'dist/**/*.html', 'http://example.com']
+			html: ['index.html', 'dist/**/*.html']
 		}))
 		.pipe(autoprefixer({
 			browsers: ['last 2 versions'],
@@ -129,4 +130,25 @@ gulp.task('default', function (callback) {
 		[ 'build','sass','browserSync', 'watch'],
 		callback
 	)
-})
+});
+
+/* 	============================================
+	To Implement
+================================================ */
+
+// "favicons-generate"
+// to the scss .pipe($.size({gzip: true, showFiles: true}))
+// to the css
+/*
+.pipe($.cssnano({
+            discardComments: {
+                removeAll: true
+            },
+            discardDuplicates: true,
+            discardEmpty: true,
+            minifyFontValues: true,
+            minifySelectors: true
+        }))
+        */
+
+  // gulp.task("favicons-generate",
