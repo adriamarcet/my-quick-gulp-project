@@ -26,7 +26,8 @@ gulp.task('sass', function () {
 		.pipe( sourcemaps.init() ) // initialize sourcemap plugin
 		.pipe( sass({
 			// output style: nested, expanded, compact, compressed
-			outputStyle: 'compact'
+			outputStyle: 'compact',
+			precision: 15
 		})) // send it to gulp plugin
 		.pipe( sourcemaps.write() )
 		.pipe( gulp.dest('app/css') ) // output folder
