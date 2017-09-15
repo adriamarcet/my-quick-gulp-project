@@ -14,6 +14,7 @@ const cache 		= require('gulp-cache');
 const del 			= require('del');
 const runSequence 	= require('run-sequence');
 const autoprefixer 	= require('gulp-autoprefixer');
+const uncss 		= require('gulp-uncss');
 
 
 
@@ -30,6 +31,9 @@ gulp.task('sass', function () {
 			outputStyle: 'compact',
 			precision: 15
 		})) // send it to gulp plugin
+		.pipe(uncss({
+			html: ['index.html', 'dist/**/*.html', 'http://example.com']
+		}))
 		.pipe(autoprefixer({
 			browsers: ['last 2 versions'],
 			cascade: false
@@ -69,7 +73,6 @@ gulp.task('useref', function () {
 
 		// Minifies only if it's a JavaScript file
 		.pipe(gulpIf('*.js', uglify() ) ) 
-		
 		// Minifies only if it's a CSS file
 		.pipe(gulpIf('*.css', cssnano()))
 		// output folder
