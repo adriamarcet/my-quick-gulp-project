@@ -87,3 +87,16 @@ We also have to change our sass task slightly so Browser Sync can inject new CSS
     stream: true
 }))
 
+
+/* 	============================================
+	Run tasks in sequence
+================================================ */
+/*
+When task-name is called, Gulp will run task-one first. When task-one finishes, Gulp will automatically start task-two. Finally, when task-two is complete, Gulp will run task-three.
+
+Run Sequence also allows you to run tasks simultaneously if you place them in an array:
+
+gulp.task('task-name', function(callback) {
+  runSequence('task-one', ['tasks','two','run','in','parallel'], 'task-three', callback);
+});
+*/

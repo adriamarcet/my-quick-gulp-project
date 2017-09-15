@@ -11,7 +11,7 @@ const cssnano 		= require('gulp-cssnano');
 const imagemin 		= require('gulp-imagemin');
 const cache 		= require('gulp-cache');
 const del 			= require('del');
-
+const runSequence 	= require('run-sequence');
 
 
 
@@ -100,3 +100,19 @@ gulp.task('clean:dist', function () {
 gulp.task('cache:clear', function (callback) {
 	return cache.clearAll(callback)
 });
+
+// Run tasks in run-sequence
+gulp.task('build', function(callback) {
+	runSequence(
+		'clean:dist', 
+		['sass','useref','images','fonts'], 
+		callback
+	)
+});
+// when you have a task named default, you can run it simply by typing the gulp command
+gulp.task('default', function (callback) {
+	runSequence(
+		[ 'build','sass','browserSync', 'watch'],
+		callback
+	)
+})
